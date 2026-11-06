@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>María Angélica - Repostería Artesanal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">🧁 Repostería María Angélica</div>
+        <nav>
+            <a href="#home">Inicio</a>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#contacto">Contacto</a>
+            <a href="#ia-section">Asistente IA</a>
+            <a href="#admin" class="btn-admin">Admin</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Dulces momentos hechos a mano</h1>
+            <p>Postres artesanales, tortas personalizadas y la mejor repostería preparada por María Angélica Tuñón Polo.</p>
+            <a href="#catalogo" class="btn-primary">Ver Catálogo</a>
+        </div>
+    </section>
+
+    <section id="catalogo" class="container">
+        <h2>Nuestro Catálogo de Postres</h2>
+        <p class="section-subtitle">Explora nuestras 5 categorías principales con opciones para todos los gustos.</p>
+        <div id="grid-productos" class="grid"></div>
+    </section>
+
+    <section id="contacto" class="container bg-light">
+        <h2>Haz tu Pedido o Consulta</h2>
+        <form id="form-contacto">
+            <div class="form-group">
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" required placeholder="Ej. Ana Pérez">
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" required placeholder="tu@correo.com">
+            </div>
+            <div class="form-group">
+                <label for="mensaje">Detalles de tu pedido o mensaje:</label>
+                <textarea id="mensaje" rows="4" required placeholder="Escribe aquí la fecha de tu evento o consulta..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Enviar Pedido</button>
+        </form>
+        <div id="mensaje-exito" class="hidden alert-success">
+            ¡Gracias por tu mensaje! María Angélica te responderá muy pronto.
+        </div>
+    </section>
+
+    <section id="ia-section" class="container">
+        <h2>🤖 Asistente Virtual de Repostería</h2>
+        <p>¿No sabes qué elegir? Cuéntale a nuestro bot qué ocasión o antojo tienes y te dirá cuál es la mejor opción.</p>
+        <div class="chat-box">
+            <div id="chat-messages" class="chat-messages">
+                <div class="msg bot">¡Hola! Soy el asistente repostero de María Angélica. ¿Para qué ocasión buscas un postre hoy? (Ej: cumpleaños, regalo, antojo de chocolate...)</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Escribe tu antojo u ocasión aquí...">
+                <button id="btn-send" class="btn-primary">Consultar</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="admin" class="container bg-light">
+        <h2>Panel de Administración</h2>
+        
+        <div id="admin-login-box">
+            <p>Acceso exclusivo para gestionar el catálogo de repostería.</p>
+            <form id="form-login">
+                <div class="form-group">
+                    <input type="text" id="admin-user" placeholder="Usuario (admin)" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="admin-pass" placeholder="Contraseña (1234)" required>
+                </div>
+                <button type="submit" class="btn-primary">Ingresar</button>
+            </form>
+            <p id="login-error" class="error-msg hidden">Usuario o contraseña incorrectos.</p>
+        </div>
+
+        <div id="admin-dashboard" class="hidden">
+            <div class="admin-header">
+                <h3>Bienvenida, María Angélica</h3>
+                <button id="btn-logout" class="btn-secondary">Cerrar Sesión</button>
+            </div>
+            <h4>Agregar Nuevo Postre al Catálogo</h4>
+            <form id="form-nuevo-producto">
+                <div class="form-group">
+                    <input type="text" id="prod-nombre" placeholder="Nombre del producto" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="prod-categoria" placeholder="Categoría (Ej: Cheesecakes)" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="prod-precio" placeholder="Precio ($ COP)" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="prod-desc" placeholder="Sabores o descripción" required>
+                </div>
+                <button type="submit" class="btn-primary">Guardar en Catálogo</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-info">
+            <h3>Repostería Artesanal</h3>
+            <p><strong>Propietaria:</strong> María Angélica Tuñón Polo</p>
+            <p><strong>Correo electrónico:</strong> byeolkim4545@gmail.com </p>
+            <p><strong>Teléfono / WhatsApp:</strong> +57 312 26 96 250 </p>
+            <p><strong>Dirección:</strong> Cartagena </p>
+        </div>
+        <div class="footer-copy">
+            <p>&copy; 2026 María Angélica Tuñón Polo - Proyecto Final Repostería</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
