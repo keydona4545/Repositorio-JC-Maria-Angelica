@@ -54,7 +54,7 @@ header nav a:hover {
 
 .hero {
     background: linear-gradient(rgba(127, 85, 57, 0.75), rgba(127, 85, 57, 0.75)), 
-                url('https://www.clarin.com/recetas/pasteleria/donas_7_KEGC20umy.html') center/cover;
+                url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=80') center/cover;
     color: var(--white);
     text-align: center;
     padding: 5rem 1.5rem;
