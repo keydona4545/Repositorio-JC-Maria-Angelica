@@ -3,14 +3,14 @@ let esAdmin = false;
 const productosIniciales = [
     { 
         id: 1, 
-        nombre: "Torta de Cumpleaños Especial", 
-        categoria: "Tortas de Cumpleaños", 
+        nombre: "Torta especial", 
+        categoria: "Tortas mixtas", 
         precio: 65000, 
-        desc: "Disponible en 3 sabores: 1. Vainilla con Arequipe, 2. Chocolate Fudgy, 3. Frutos Rojos con Crema." 
+        desc: "Disponible en 3 sabores: 1. Vainilla con Arequipe, 2. Chocolate Fudgy, 3. Fresas con Crema." 
     },
     { 
         id: 2, 
-        nombre: "Cheesecake Artesanal", 
+        nombre: "Cheesecake", 
         categoria: "Cheesecakes", 
         precio: 52000, 
         desc: "Disponible en 3 sabores: 1. Maracuyá, 2. Frutos Rojos, 3. Galleta Oreo." 
@@ -37,7 +37,6 @@ const productosIniciales = [
         desc: "Disponible en 3 opciones: 1. Chispas de Chocolate, 2. Avena y Miel, 3. Palitos Crunch de Canela." 
     }
 ];
-
 function renderProductos() {
     const grid = document.getElementById('grid-productos');
     if (!grid) return;
