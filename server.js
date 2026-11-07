@@ -6,13 +6,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 1. REEMPLAZA ESTOS DOS VALORES CON TUS LLAVES DE SUPABASE:
 const SUPABASE_URL = 'https://skrpkxvptqnkuewjpdrx.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_nIXcOirLK8OHAor6JA-wEQ_RBLFKKYk';
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// 2. NOMBRE DE TU TABLA (Si en Supabase la llamaste 'menu' o 'productos'):
 const TABLA = 'menu'; 
 
 // --- RUTAS DE LA API ---
