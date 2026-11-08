@@ -136,7 +136,7 @@ document.getElementById('form-login')?.addEventListener('submit', function(e) {
     const user = document.getElementById('admin-user').value;
     const pass = document.getElementById('admin-pass').value;
 
-    if ((user === 'admin' || user === 'Maria') && pass === '1234') {
+    if (user === 'KeyDona4545' && pass === '05042009MATP') {
         esAdmin = true;
         renderProductos();
         document.getElementById('admin-login-box').classList.add('hidden');
