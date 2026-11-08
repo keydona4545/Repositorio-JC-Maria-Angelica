@@ -5,7 +5,9 @@
     --choco-dark: #9c6644;
     --white: #ffffff;
     --pink-accent: #e8a598;
+    --pink-light: #fceade;
     --blue-light: #c69294;
+    --blue-accent: #a86b6e;
     --text-dark: #3d2b1f;
 }
 
@@ -267,4 +269,3 @@ footer {
         font-size: 1.8rem;
     }
 }
-
