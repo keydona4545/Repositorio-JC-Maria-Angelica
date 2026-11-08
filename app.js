@@ -1,4 +1,7 @@
 let esAdmin = false;
+const API_URL = window.location.origin.startsWith('http') 
+    ? '/api/productos' 
+    : 'http://localhost:5000/api/productos';
 
 const productosIniciales = [
     { 
@@ -37,24 +40,24 @@ const productosIniciales = [
         desc: "Disponible en 3 opciones: 1. Chispas de Chocolate, 2. Avena y Miel, 3. Palitos Crunch de Canela." 
     }
 ];
-function renderProductos() {
+
+async function renderProductos() {
     const grid = document.getElementById('grid-productos');
     if (!grid) return;
 
-    let productos = null;
+    let productos = [];
 
     try {
-        const dataGuardada = localStorage.getItem('productos_reposteria');
-        if (dataGuardada) {
-            productos = JSON.parse(dataGuardada);
+        const response = await fetch(API_URL);
+        if (response.ok) {
+            productos = await response.json();
         }
     } catch (e) {
-        console.error("Error leyendo localStorage", e);
+        console.warn("Servidor backend no detectado, cargando datos iniciales:", e);
     }
 
     if (!productos || !Array.isArray(productos) || productos.length === 0) {
         productos = productosIniciales;
-        localStorage.setItem('productos_reposteria', JSON.stringify(productosIniciales));
     }
 
     grid.innerHTML = '';
@@ -71,11 +74,13 @@ function renderProductos() {
     });
 }
 
-function eliminarProducto(id) {
+async function eliminarProducto(id) {
     if (!esAdmin) return;
-    let productos = JSON.parse(localStorage.getItem('productos_reposteria')) || productosIniciales;
-    productos = productos.filter(p => p.id !== id);
-    localStorage.setItem('productos_reposteria', JSON.stringify(productos));
+    try {
+        await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+    } catch (e) {
+        console.error("Error al eliminar producto:", e);
+    }
     renderProductos();
 }
 
@@ -150,16 +155,22 @@ document.getElementById('btn-logout')?.addEventListener('click', function() {
     document.getElementById('form-login').reset();
 });
 
-document.getElementById('form-nuevo-producto')?.addEventListener('submit', function(e) {
+document.getElementById('form-nuevo-producto')?.addEventListener('submit', async function(e) {
     e.preventDefault();
     const nombre = document.getElementById('prod-nombre').value;
     const categoria = document.getElementById('prod-categoria').value;
     const precio = Number(document.getElementById('prod-precio').value);
     const desc = document.getElementById('prod-desc').value;
 
-    const productos = JSON.parse(localStorage.getItem('productos_reposteria')) || [];
-    productos.push({ id: Date.now(), nombre, categoria, precio, desc });
-    localStorage.setItem('productos_reposteria', JSON.stringify(productos));
+    try {
+        await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nombre, categoria, precio, desc })
+        });
+    } catch (e) {
+        console.error("Error al registrar producto:", e);
+    }
 
     renderProductos();
     this.reset();
