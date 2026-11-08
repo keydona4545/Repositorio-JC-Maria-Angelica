@@ -163,16 +163,23 @@ document.getElementById('form-nuevo-producto')?.addEventListener('submit', async
     const desc = document.getElementById('prod-desc').value;
 
     try {
-        await fetch(API_URL, {
+        const res = await fetch(API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ nombre, categoria, precio, desc })
         });
+
+        if (res.ok) {
+            alert('¡Nuevo postre guardado con éxito en el catálogo!');
+            this.reset();
+        } else {
+            const errData = await res.json();
+            alert('Error al guardar en Supabase: ' + (errData.error || 'Verifica los permisos RLS'));
+        }
     } catch (e) {
         console.error("Error al registrar producto:", e);
+        alert('Error de conexión: asegura haber ejecutado "npm start" en tu terminal.');
     }
 
     renderProductos();
-    this.reset();
-    alert('¡Nuevo postre guardado con éxito en el catálogo!');
 });
