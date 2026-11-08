@@ -3,6 +3,10 @@ const API_URL = window.location.origin.startsWith('http')
     ? '/api/productos' 
     : 'http://localhost:5000/api/productos';
 
+const PEDIDOS_URL = window.location.origin.startsWith('http') 
+    ? '/api/pedidos' 
+    : 'http://localhost:5000/api/pedidos';
+
 const productosIniciales = [
     { 
         id: 1, 
@@ -90,10 +94,30 @@ if (document.readyState === 'loading') {
     renderProductos();
 }
 
-document.getElementById('form-contacto')?.addEventListener('submit', function(e) {
+document.getElementById('form-contacto')?.addEventListener('submit', async function(e) {
     e.preventDefault();
-    document.getElementById('mensaje-exito').classList.remove('hidden');
-    this.reset();
+    const nombre = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
+    const mensaje = document.getElementById('mensaje').value;
+
+    try {
+        const response = await fetch(PEDIDOS_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nombre, email, mensaje })
+        });
+
+        if (response.ok) {
+            document.getElementById('mensaje-exito').classList.remove('hidden');
+            this.reset();
+        } else {
+            const errorData = await response.json();
+            alert('Error al enviar el pedido: ' + (errorData.error || 'Verifica los permisos de Supabase'));
+        }
+    } catch (err) {
+        console.error("Error al enviar el formulario:", err);
+        alert('Error de conexión con el servidor.');
+    }
 });
 
 document.getElementById('btn-send')?.addEventListener('click', consultarIA);
