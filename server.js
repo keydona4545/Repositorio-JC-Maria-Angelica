@@ -33,6 +33,13 @@ app.delete('/api/productos/:id', async (req, res) => {
   res.json({ mensaje: 'Producto eliminado con éxito' });
 });
 
+app.post('/api/pedidos', async (req, res) => {
+  const { nombre, email, mensaje } = req.body;
+  const { data, error } = await supabase.from('pedidos').insert([{ nombre, email, mensaje }]);
+  if (error) return res.status(500).json({ error: error.message });
+  res.status(201).json(data);
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Servidor activo en http://localhost:${PORT}`);
